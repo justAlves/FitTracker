@@ -39,21 +39,21 @@
       on:click={() => push("/")}
     >
       <IoMdWater />
-      <span>Water</span>
+      <span>Água</span>
     </a>
     <a
       class={`tab-button icon ${currentRoute === "#/exercise" ? "active" : ""}`}
       on:click={() => push("/exercise")}
     >
       <IoMdWalk />
-      <span>Exercise</span>
+      <span>Exercícios</span>
     </a>
     <a
       class={`tab-button icon ${currentRoute === "#/settings" ? "active" : ""}`}
       on:click={() => push("/settings")}
     >
       <IoMdSettings />
-      <span>Settings</span>
+      <span>Configurações</span>
     </a>
   </div>
 </ion-app>

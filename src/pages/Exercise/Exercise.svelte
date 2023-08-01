@@ -3,26 +3,23 @@
   import { store } from "$stores/store";
 </script>
 
-<Header/>
+<Header />
 
 <div class="container">
   <div class="goal-container">
     <div>
-      <h2>Goal: {$store.exerciseGoal}</h2>
+      <h2>Meta: {$store.exerciseGoal}</h2>
     </div>
-    <div class="spliter"/>
+    <div class="spliter" />
     <div>
-      <h2>Pauses: {$store.exercised}</h2>
+      <h2>Pausas: {$store.exercised}</h2>
     </div>
   </div>
-  <ion-content>
-
-  </ion-content>
+  <ion-content />
 </div>
 
 <style>
-
-  .goal-container{
+  .goal-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -33,14 +30,13 @@
     background-color: #fff;
   }
 
-  h2{
+  h2 {
     font-size: 1.2rem;
   }
 
-  .spliter{
+  .spliter {
     width: 1px;
     height: 100%;
     background-color: #181818;
   }
-
 </style>
