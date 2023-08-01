@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import { Preferences } from "@capacitor/preferences";
 
 type Store = {
   drinkedWater: number;
@@ -27,8 +28,15 @@ const initialState: Store = {
   items: [],
 };
 
+
+const state = await Preferences.get({ key: 'data' })
+
+const JSONstate = JSON.parse(state.value)
+
+console.log(JSONstate)
+
 const customStore = () => {
-  const { subscribe, set, update } = writable(initialState);
+  const { subscribe, set, update } = writable(JSONstate || initialState);
 
   return {
     subscribe,
@@ -51,3 +59,5 @@ const customStore = () => {
     removeItem: (id: number) => update((store) => ({ ...store, items: store.items.filter((item) => item.id !== id) })),
   };
 }
+
+export const store = customStore();

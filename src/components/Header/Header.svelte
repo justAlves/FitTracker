@@ -45,7 +45,6 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    color: rgb(211, 211, 211)
-  }
+    color: rgb(26, 25, 25)  }
 
 </style>

@@ -1,5 +1,6 @@
 <script>
   import Header from "$components/Header/Header.svelte";
+  import { store } from "$stores/store";
 </script>
 
 <Header/>
@@ -7,11 +8,11 @@
 <div class="container">
   <div class="goal-container">
     <div>
-      <h2>Goal: 2000ml</h2>
+      <h2>Goal: {$store.waterGoal}ml</h2>
     </div>
     <div class="spliter"/>
     <div>
-      <h2>Drinked: 1000ml</h2>
+      <h2>Drinked: {$store.drinkedWater}ml</h2>
     </div>
   </div>
   <ion-content>
@@ -26,9 +27,10 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    color: rgb(211, 211, 211);
+    color: #000;
     border-radius: 1rem;
     margin-bottom: 1rem;
+    background-color: #fff;
   }
 
   h2{
@@ -38,11 +40,7 @@
   .spliter{
     width: 1px;
     height: 100%;
-    background-color: rgb(211, 211, 211);
-  }
-
-  ion-content{
-    --background: #242424
+    background-color: #181818;
   }
 
 </style>
