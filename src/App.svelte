@@ -1,28 +1,27 @@
 <script lang="ts">
   import Router, { push } from "svelte-spa-router";
   import { conditionsFailHandler, routeLoadingHandler, routes } from "./routes";
-  import { IoMdWater, IoMdWalk, IoMdSettings } from "svelte-icons/io"
+  import { IoMdWater, IoMdWalk, IoMdSettings } from "svelte-icons/io";
   import { onDestroy, onMount } from "svelte";
-  import { loadStoreFromDevice } from "$stores/storage";
   import { Preferences } from "@capacitor/preferences";
   // Lógica para acompanhar a rota atual (pode variar dependendo do Svelte Router ou outras configurações)
-  let currentRoute = '#/';
+  let currentRoute = "#/";
 
-    // Função para atualizar a rota atual quando ela mudar
-    function handleRouteChange() {
-      currentRoute = window.location.hash; // Ou use a navegação de rota do Svelte, se estiver usando o Svelte Router
-    }
+  // Função para atualizar a rota atual quando ela mudar
+  function handleRouteChange() {
+    currentRoute = window.location.hash; // Ou use a navegação de rota do Svelte, se estiver usando o Svelte Router
+  }
 
-    // Adicione um ouvinte para a mudança de rota
-    window.addEventListener('hashchange', handleRouteChange);
+  // Adicione um ouvinte para a mudança de rota
+  window.addEventListener("hashchange", handleRouteChange);
 
-    // Remova o ouvinte quando o componente for destruído (para evitar vazamentos de memória)
-    onDestroy(() => {
-      window.removeEventListener('hashchange', handleRouteChange);
-    });
+  // Remova o ouvinte quando o componente for destruído (para evitar vazamentos de memória)
+  onDestroy(() => {
+    window.removeEventListener("hashchange", handleRouteChange);
+  });
 
-    // Apaga a storage, apenas para testes
- /*    onMount(async () => {
+  // Apaga a storage, apenas para testes
+  /*    onMount(async () => {
       await Preferences.clear()
     }); */
 </script>
@@ -35,21 +34,29 @@
   />
 
   <div class="tab-bar">
-    <a class={`tab-button icon ${currentRoute === '#/' ? 'active' : ''}`} on:click={() => push('/')}>
-      <IoMdWater/>
+    <a
+      class={`tab-button icon ${currentRoute === "#/" ? "active" : ""}`}
+      on:click={() => push("/")}
+    >
+      <IoMdWater />
       <span>Water</span>
     </a>
-    <a class={`tab-button icon ${currentRoute === '#/exercise' ? 'active' : ''}`} on:click={() => push('/exercise')}>
-      <IoMdWalk/>
+    <a
+      class={`tab-button icon ${currentRoute === "#/exercise" ? "active" : ""}`}
+      on:click={() => push("/exercise")}
+    >
+      <IoMdWalk />
       <span>Exercise</span>
     </a>
-    <a class={`tab-button icon ${currentRoute === '#/settings' ? 'active' : ''}`} on:click={() => push('/settings')}>
-      <IoMdSettings/>
+    <a
+      class={`tab-button icon ${currentRoute === "#/settings" ? "active" : ""}`}
+      on:click={() => push("/settings")}
+    >
+      <IoMdSettings />
       <span>Settings</span>
     </a>
   </div>
 </ion-app>
-
 
 <style lang="scss">
   .tab-bar {
@@ -81,10 +88,9 @@
     transition: all 0.1s ease-in-out;
   }
 
-  .icon{
+  .icon {
     color: #000;
     width: 2rem;
-
   }
 
   .tab-button.active {
