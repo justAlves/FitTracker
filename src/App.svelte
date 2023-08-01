@@ -3,7 +3,6 @@
   import { conditionsFailHandler, routeLoadingHandler, routes } from "./routes";
   import { IoMdWater, IoMdWalk, IoMdSettings } from "svelte-icons/io"
   import { onDestroy } from "svelte";
-
   // Lógica para acompanhar a rota atual (pode variar dependendo do Svelte Router ou outras configurações)
   let currentRoute = '#/';
 
@@ -27,7 +26,6 @@
     on:conditionsFailed={conditionsFailHandler}
   />
 
-
   <div class="tab-bar">
     <a class={`tab-button icon ${currentRoute === '#/' ? 'active' : ''}`} on:click={() => push('/')}>
       <IoMdWater/>
@@ -49,14 +47,14 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #e0e0e0; /* Cor de fundo da barra de navegação */
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 4rem; /* Altura da barra de navegação */
-    border-top: 1px solid #ccc; /* Borda superior da barra de navegação */
-    margin-left: -0.5rem;
+    border-top: 1px solid #000; /* Borda superior da barra de navegação */
     box-shadow: 0px -2px 32px 0px rgba(0, 0, 0, 0.205);
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
   }
 
   .tab-button {
@@ -64,7 +62,7 @@
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: #333333; /* Cor do ícone e rótulo dos botões */
+    color: #ffffff; /* Cor do ícone e rótulo dos botões */
     padding: 5px; /* Espaçamento interno do botão */
   }
 
@@ -74,8 +72,8 @@
   }
 
   .icon{
-    color: #2c2c2c;
-    width: 1.5rem;
+    color: #ffffff;
+    width: 2rem;
 
   }
 
