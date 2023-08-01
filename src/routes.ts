@@ -1,7 +1,9 @@
 
+import Exercise from "$pages/Exercise/Exercise.svelte";
 import NotAuthorized from "$pages/NotAuthorized/NotAuthorized.svelte";
 import NotFound from "$pages/NotFound/NotFound.svelte";
-import { isUserLoggedIn } from "$policies/auth";
+import Settings from "$pages/Settings/Settings.svelte";
+import Water from "$pages/Water/Water.svelte";
 import { type ConditionsFailedEvent, type RouteLoadingEvent, replace } from "svelte-spa-router";
 import { wrap } from "svelte-spa-router/wrap";
 
@@ -10,13 +12,13 @@ export const routes = new Map();
 routes.set(
   "/",
   wrap({
-    component: Home,
+    component: Water,
   })
 );
 routes.set(
   "/exercise",
   wrap({
-    component: Profile,
+    component: Exercise,
   })
 );
 routes.set(
