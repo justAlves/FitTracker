@@ -2,7 +2,9 @@
   import Router, { push } from "svelte-spa-router";
   import { conditionsFailHandler, routeLoadingHandler, routes } from "./routes";
   import { IoMdWater, IoMdWalk, IoMdSettings } from "svelte-icons/io"
-  import { onDestroy } from "svelte";
+  import { onDestroy, onMount } from "svelte";
+  import { loadStoreFromDevice } from "$stores/storage";
+  import { Preferences } from "@capacitor/preferences";
   // Lógica para acompanhar a rota atual (pode variar dependendo do Svelte Router ou outras configurações)
   let currentRoute = '#/';
 
@@ -18,8 +20,14 @@
     onDestroy(() => {
       window.removeEventListener('hashchange', handleRouteChange);
     });
+
+    // Apaga a storage, apenas para testes
+ /*    onMount(async () => {
+      await Preferences.clear()
+    }); */
 </script>
 
+<ion-app>
   <Router
     {routes}
     on:routeLoading={routeLoadingHandler}
@@ -39,8 +47,9 @@
       <IoMdSettings/>
       <span>Settings</span>
     </a>
-
   </div>
+</ion-app>
+
 
 <style lang="scss">
   .tab-bar {
@@ -53,6 +62,7 @@
     height: 4rem; /* Altura da barra de navegação */
     border-top: 1px solid #000; /* Borda superior da barra de navegação */
     box-shadow: 0px -2px 32px 0px rgba(0, 0, 0, 0.205);
+    background-color: #eeeeee; /* Cor de fundo da barra de navegação */
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
   }
@@ -62,7 +72,7 @@
     flex-direction: column;
     align-items: center;
     text-decoration: none;
-    color: #ffffff; /* Cor do ícone e rótulo dos botões */
+    color: #000; /* Cor do ícone e rótulo dos botões */
     padding: 5px; /* Espaçamento interno do botão */
   }
 
@@ -72,7 +82,7 @@
   }
 
   .icon{
-    color: #ffffff;
+    color: #000;
     width: 2rem;
 
   }
