@@ -1,5 +1,6 @@
 import { writable } from "svelte/store";
 import { Preferences } from "@capacitor/preferences";
+import type { I } from "vitest/dist/types-e3c9754d";
 
 type Store = {
   drinkedWater: number;
