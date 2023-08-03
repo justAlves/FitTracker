@@ -24,7 +24,7 @@ const initialState: Store = {
   waterGoal: 2000,
   exercised: 0,
   exerciseGoal: 10,
-  waterPerNotification: 200,
+  waterPerNotification: 250,
   today: new Date().toISOString().slice(0, 10),
   items: [],
 };

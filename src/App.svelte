@@ -4,6 +4,7 @@
   import { IoMdWater, IoMdWalk, IoMdSettings } from "svelte-icons/io";
   import { onDestroy, onMount } from "svelte";
   import { Preferences } from "@capacitor/preferences";
+  import { store } from "$stores/store";
   // Lógica para acompanhar a rota atual (pode variar dependendo do Svelte Router ou outras configurações)
   let currentRoute = "#/";
 
