@@ -21,9 +21,9 @@
   });
 
   // Apaga a storage, apenas para testes
-  /*    onMount(async () => {
-      await Preferences.clear()
-    }); */
+  /*   onMount(async () => {
+    await Preferences.clear();
+  }); */
 </script>
 
 <ion-app>

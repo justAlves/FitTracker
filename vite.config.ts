@@ -10,6 +10,10 @@ export default defineConfig({
     alias: aliases,
   },
 
+  build: {
+    target: "esnext",
+  },
+
   css: {
     preprocessorOptions: {
       scss: {
