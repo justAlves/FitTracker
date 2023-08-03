@@ -2,6 +2,7 @@
   import Header from "$components/Header/Header.svelte";
   import { store } from "$stores/store";
   import Modal from "$components/Modal/Modal.svelte";
+  import Card from "$components/Card/Card.svelte";
 
   interface Item {
     id: number;
@@ -34,11 +35,9 @@
         <h2>Consumido: {$store.drinkedWater}ml</h2>
       </div>
     </div>
-    <ion-content>
+    <ion-content class="ion-padding">
       {#each items as item}
-        <div>
-          <h2>Meta: {item.goal}ml</h2>
-        </div>
+        <Card data={item} />
       {/each}
     </ion-content>
   </div>
@@ -55,7 +54,10 @@
       <ion-icon name="add" />
     </ion-fab-button>
   </ion-fab>
-  <Modal trigger="openModal" />
+  <Modal
+    trigger="openModal"
+    type="water"
+  />
 </ion-content>
 
 <style>

@@ -1,6 +1,7 @@
 <script lang="ts">
   /* eslint-disable svelte/valid-compile */
   import waterImage from "$assets/water.svg";
+  import exerciseImage from "$assets/exercise.svg";
   import { store } from "$stores/store";
   import { Preferences } from "@capacitor/preferences";
 
@@ -10,20 +11,29 @@
   };
 
   export let trigger: string;
-  let drinkedWater = 0;
+  export let type: string;
+  let goal = 0;
 
   const register = async () => {
     const item = {
       id: new Date().getTime(),
-      goal: drinkedWater,
-      type: "water",
+      goal: goal,
+      type: type,
       date: new Date().toISOString().slice(0, 10),
     };
 
-    const storeDrinkedWater = $store.drinkedWater as number;
+    const currentGoal =
+      type === "water"
+        ? ($store.drinkedWater as number)
+        : ($store.exercised as number);
 
     store.addItem(item);
-    store.setDrinkedWater(storeDrinkedWater + drinkedWater);
+
+    if (type === "water") {
+      store.setDrinkedWater(currentGoal + goal);
+    } else {
+      store.setExercised(currentGoal + goal);
+    }
 
     await Preferences.set({
       key: "data",
@@ -38,23 +48,32 @@
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="end">
-        <ion-button on:click={cancel}>Cancel</ion-button>
+        <ion-button on:click={cancel}>Cancelar</ion-button>
       </ion-buttons>
-      <ion-title> Registrar consumo </ion-title>
+      <ion-title>Registrar {type === "water" ? "consumo" : "pausa"}</ion-title>
     </ion-toolbar>
   </ion-header>
   <ion-content>
     <div class="modal-container">
-      <ion-img src={waterImage} />
+      <ion-img
+        src={type === "water" ? waterImage : exerciseImage}
+        style={`max-width: ${type === "water" ? "150px" : "200px"}`}
+      />
 
       <ion-item>
-        <ion-label position="stacked">Quantidade de água em ml</ion-label>
+        <ion-label position="stacked"
+          >Quantidade de {type === "water"
+            ? "água em ml"
+            : "pausas para exercitar"}</ion-label
+        >
         <ion-input
           type="number"
-          placeholder="Informe a quantidade de água"
-          value={drinkedWater}
+          placeholder="Informe a quantidade de {type === 'water'
+            ? 'água'
+            : 'pausas'}"
+          value={goal}
           on:change={(e) => {
-            drinkedWater = Number(e.target.value);
+            goal = Number(e.target.value);
           }}
         />
       </ion-item>
