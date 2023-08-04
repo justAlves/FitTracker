@@ -5,6 +5,30 @@
   import { onDestroy, onMount } from "svelte";
   import { Preferences } from "@capacitor/preferences";
   import { store } from "$stores/store";
+  import { callWaterNotification } from "$policies/notificationController";
+
+  /*   async function enviarNotificacao() {
+    try {
+      await LocalNotifications.schedule({
+        notifications: [
+          {
+            title: "Hora de beber água!",
+            body: `Você está quase lá! Beba ${$store.waterPerNotification}ml de água para atingir sua meta diária.`,
+            id: 1, // Identificador único para a notificação
+            schedule: {
+              at: new Date(Date.now() + 1000 * 5), // Data e hora para agendar a notificação
+            },
+            smallIcon: "res://icon", // Opcional: fornecer o nome do ícone para a notificação (deve estar em 'res' folder)
+            actionTypeId: "", // Opcional: ID para uma ação personalizada ao tocar na notificação
+            extra: null, // Opcional: dados extras que podem ser fornecidos para a notificação
+          },
+        ],
+      });
+    } catch (error) {
+      console.error("Erro ao agendar notificação:", error);
+    }
+  } */
+
   // Lógica para acompanhar a rota atual (pode variar dependendo do Svelte Router ou outras configurações)
   let currentRoute = "#/";
 
@@ -21,8 +45,17 @@
     window.removeEventListener("hashchange", handleRouteChange);
   });
 
-  // Apaga a storage, apenas para testes
-  /*   onMount(async () => {
+  onMount(async () => {
+    await callWaterNotification({
+      waterPerNotification: $store.waterPerNotification,
+      drinkedWater: $store.drinkedWater,
+      initialHour: $store.initialHour,
+      finalHour: $store.finalHour,
+    });
+  });
+
+  /*   // Apaga a storage, apenas para testes
+  onMount(async () => {
     await Preferences.clear();
   }); */
 </script>

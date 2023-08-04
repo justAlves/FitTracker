@@ -2,7 +2,7 @@
   /* eslint-disable svelte/valid-compile */
   import waterImage from "$assets/water.svg";
   import exerciseImage from "$assets/exercise.svg";
-  import { store } from "$stores/store";
+  import { store, modal } from "$stores/store";
   import { Preferences } from "@capacitor/preferences";
 
   const cancel = () => {

@@ -10,6 +10,8 @@ type Store = {
   waterPerNotification: number;
   today: string;
   items: Array<Item>;
+  initialHour: number;
+  finalHour: number;
 };
 
 type Item = {
@@ -27,6 +29,8 @@ const initialState: Store = {
   waterPerNotification: 250,
   today: new Date().toISOString().slice(0, 10),
   items: [],
+  initialHour: 8,
+  finalHour: 22,
 };
 
 
@@ -43,6 +47,7 @@ const customStore = () => {
     subscribe,
     set,
     update,
+    get: () => JSONstate as Store || initialState,
     reset: () => set(initialState),
     setDrinkedWater: (value: number) =>
       update((store) => ({ ...store, drinkedWater: value })),
@@ -58,7 +63,11 @@ const customStore = () => {
     setItems: (value: Array<Item>) => update((store) => ({ ...store, items: value })),
     addItem: (item: Item) => update((store) => ({ ...store, items: [...store.items, item] })),
     removeItem: (id: number) => update((store) => ({ ...store, items: store.items.filter((item) => item.id !== id) })),
+    setInitialHour: (value: number) => update((store) => ({ ...store, initialHour: value })),
+    setFinalHour: (value: number) => update((store) => ({ ...store, finalHour: value })),
   };
 }
 
 export const store = customStore();
+
+export const modal = writable(false);
