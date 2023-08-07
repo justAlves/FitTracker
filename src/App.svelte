@@ -3,13 +3,13 @@
   import { conditionsFailHandler, routeLoadingHandler, routes } from "./routes";
   import { IoMdWater, IoMdWalk, IoMdSettings } from "svelte-icons/io";
   import { onDestroy, onMount } from "svelte";
-  import { store } from "$stores/store";
   import {
+    callExerciseNotification,
     callWaterNotification,
     registerActions,
   } from "$policies/notificationController";
-  import { Preferences } from "@capacitor/preferences";
   import { LocalNotifications } from "@capacitor/local-notifications";
+  import { Preferences } from "@capacitor/preferences";
 
   // Lógica para acompanhar a rota atual (pode variar dependendo do Svelte Router ou outras configurações)
   let currentRoute = "#/";
@@ -29,33 +29,17 @@
     window.removeEventListener("hashchange", handleRouteChange);
   });
 
-  const {
-    exerciseGoal,
-    waterGoal,
-    exercised,
-    drinkedWater,
-    finalHour,
-    initialHour,
-    waterPerNotification,
-  } = store.get();
-
   onMount(async () => {
-    await LocalNotifications.requestPermissions().display();
+    await LocalNotifications.requestPermissions();
     await registerActions();
     if (!notificationsCalled) {
-      await callWaterNotification({
-        waterGoal,
-        drinkedWater,
-        finalHour,
-        initialHour,
-        waterPerNotification,
-      });
-
+      await callWaterNotification();
+      await callExerciseNotification();
       notificationsCalled = true;
     }
   });
 
-  /* // Apaga a storage, apenas para testes
+  /*   // Apaga a storage, apenas para testes
   onMount(async () => {
     await Preferences.clear();
   }); */

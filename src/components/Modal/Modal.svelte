@@ -2,7 +2,7 @@
   /* eslint-disable svelte/valid-compile */
   import waterImage from "$assets/water.svg";
   import exerciseImage from "$assets/exercise.svg";
-  import { store, modal } from "$stores/store";
+  import { store } from "$stores/store";
   import { Preferences } from "@capacitor/preferences";
 
   const cancel = () => {
@@ -17,22 +17,20 @@
   const register = async () => {
     const item = {
       id: new Date().getTime(),
-      goal: goal,
+      goal: type === "water" ? goal : 1,
       type: type,
       date: new Date().toISOString().slice(0, 10),
     };
 
     const currentGoal =
-      type === "water"
-        ? ($store.drinkedWater as number)
-        : ($store.exercised as number);
+      type === "water" ? $store.drinkedWater : $store.exercised;
 
     store.addItem(item);
 
     if (type === "water") {
       store.setDrinkedWater(currentGoal + goal);
     } else {
-      store.setExercised(currentGoal + goal);
+      store.setExercised(currentGoal + 1);
     }
 
     await Preferences.set({
@@ -61,21 +59,17 @@
       />
 
       <ion-item>
-        <ion-label position="stacked"
-          >Quantidade de {type === "water"
-            ? "água em ml"
-            : "pausas para exercitar"}</ion-label
-        >
-        <ion-input
-          type="number"
-          placeholder="Informe a quantidade de {type === 'water'
-            ? 'água'
-            : 'pausas'}"
-          value={goal}
-          on:change={(e) => {
-            goal = Number(e.target.value);
-          }}
-        />
+        {#if type === "water"}
+          <ion-label position="stacked">Quantidade de água em ml</ion-label>
+          <ion-input
+            type="number"
+            placeholder="Informe a quantidade de água"
+            value={goal}
+            on:change={(e) => {
+              goal = Number(e.target.value);
+            }}
+          />
+        {/if}
       </ion-item>
 
       <ion-button

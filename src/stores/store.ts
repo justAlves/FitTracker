@@ -68,5 +68,3 @@ const customStore = () => {
 }
 
 export const store = customStore();
-
-export const modal = writable(false);
