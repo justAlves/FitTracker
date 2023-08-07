@@ -4,7 +4,10 @@
   import { IoMdWater, IoMdWalk, IoMdSettings } from "svelte-icons/io";
   import { onDestroy, onMount } from "svelte";
   import { store } from "$stores/store";
-  import { callWaterNotification } from "$policies/notificationController";
+  import {
+    callWaterNotification,
+    registerActions,
+  } from "$policies/notificationController";
   import { Preferences } from "@capacitor/preferences";
   import { LocalNotifications } from "@capacitor/local-notifications";
 
@@ -37,6 +40,8 @@
   } = store.get();
 
   onMount(async () => {
+    await LocalNotifications.requestPermissions().display();
+    await registerActions();
     if (!notificationsCalled) {
       await callWaterNotification({
         waterGoal,
@@ -50,7 +55,7 @@
     }
   });
 
-  /*   // Apaga a storage, apenas para testes
+  /* // Apaga a storage, apenas para testes
   onMount(async () => {
     await Preferences.clear();
   }); */
