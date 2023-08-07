@@ -12,23 +12,7 @@ const config: CapacitorConfig = {
       sound: "beep.wav",
     },
   },
-  ios: {
-    allowWebViewSandbox: true,
-  },
-  android: {
-    allowIntents: [
-      {
-        action: 'VIEW',
-        dataMimeType: '*/*',
-        uriIncludePattern: '.*',
-        categoryIncludeList: [
-          'android.intent.category.BROWSABLE',
-          'android.intent.category.DEFAULT',
-        ],
-      },
-    ],
-    urlScheme: 'app', // Esquema personalizado do aplicativo
-  },
+
 };
 
 export default config;
