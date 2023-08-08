@@ -62,11 +62,12 @@ const register = (type: string) => {
     date: new Date().toISOString().slice(0, 10),
   };
 
-  const currentGoal = drinkedWater;
+  const currentWaterGoal = drinkedWater;
+  const currentGoal = exercised;
   store.addItem(item);
 
   if (item.type === "water") {
-    store.setDrinkedWater(currentGoal + item.goal);
+    store.setDrinkedWater(currentWaterGoal + item.goal);
   } else {
     store.setExercised(currentGoal + item.goal);
   }
@@ -135,8 +136,8 @@ export async function callExerciseNotification() {
       notifications: [
         {
           title: "Faça uma pausa para o bem da sua saúde!",
-          body: `Que tal uma pausa para um alongamento ou uma caminhada rápida? Cuide do seu corpo e mente agora mesmo!`,
-          id: 1,
+          body: `Que tal uma pausa para um alongamento ou uma caminhada rápida?`,
+          id: 2,
           schedule: {
             at: new Date(Date.now() + 1000 * 60 * 30),
             allowWhileIdle: true,

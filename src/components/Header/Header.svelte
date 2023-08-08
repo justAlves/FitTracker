@@ -34,6 +34,10 @@
     display: flex;
     align-items: center;
     padding: 1rem;
-    color: rgb(26, 25, 25);
+    color: #000;
+    background-color: #e5efd1;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
   }
 </style>

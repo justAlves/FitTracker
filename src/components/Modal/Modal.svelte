@@ -15,6 +15,9 @@
   let goal = 0;
 
   const register = async () => {
+    if (type === "water" && goal === 0)
+      return alert("Informe a quantidade de água");
+
     const item = {
       id: new Date().getTime(),
       goal: type === "water" ? goal : 1,
@@ -86,6 +89,15 @@
 <style lang="scss">
   ion-header {
     padding: 0.5rem;
+    background-color: #e5efd1;
+  }
+
+  ion-content {
+    --background: #e5efd1;
+  }
+
+  ion-toolbar {
+    --background: transparent;
   }
 
   ion-img {
@@ -102,9 +114,15 @@
     gap: 2rem;
     margin-top: 4rem;
     width: 100%;
+    background-color: #e5efd1;
   }
 
   ion-input {
     width: 100%;
+    --background: transparent;
+  }
+
+  ion-item {
+    --background: transparent;
   }
 </style>

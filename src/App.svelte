@@ -88,7 +88,7 @@
     height: 4rem; /* Altura da barra de navegação */
     border-top: 1px solid #000; /* Borda superior da barra de navegação */
     box-shadow: 0px -2px 32px 0px rgba(0, 0, 0, 0.205);
-    background-color: #eeeeee; /* Cor de fundo da barra de navegação */
+    background-color: #e5efd1; /* Cor de fundo da barra de navegação */
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
   }
@@ -115,5 +115,9 @@
   .tab-button.active {
     color: #51a321; /* Cor do ícone e rótulo dos botões ativos */
     font-weight: bold;
+  }
+
+  ion-app {
+    background-color: #e5efd1;
   }
 </style>

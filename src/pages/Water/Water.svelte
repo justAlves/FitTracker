@@ -27,15 +27,16 @@
 <ion-content>
   <div class="container">
     <div class="goal-container">
-      <div>
-        <h2>Meta: {$store.waterGoal}ml</h2>
+      <div class="left-box">
+        <h3>Meta</h3>
+        <h2>{$store.waterGoal}ml</h2>
       </div>
-      <div class="spliter" />
-      <div>
-        <h2>Consumido: {$store.drinkedWater}ml</h2>
+      <div class="right-box">
+        <h3>Consumido</h3>
+        <h2>{$store.drinkedWater}ml</h2>
       </div>
     </div>
-    <ion-content class="ion-padding">
+    <ion-content class="ion-padding list">
       {#each items as item}
         <Card data={item} />
       {/each}
@@ -61,28 +62,25 @@
 </ion-content>
 
 <style>
-  .goal-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    color: #000;
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-    background-color: #fff;
+  h3 {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: Roboto;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
   }
-
   h2 {
-    font-size: 1.2rem;
+    color: #fff;
+    font-family: Roboto;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 600;
   }
 
-  .spliter {
-    width: 1px;
-    height: 100%;
-    background-color: #181818;
+  .left-box {
+    padding: 0 3rem;
   }
-
-  ion-fab {
-    margin-bottom: 7rem;
+  .right-box {
+    padding: 0 2rem;
   }
 </style>
