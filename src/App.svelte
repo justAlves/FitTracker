@@ -10,6 +10,7 @@
   } from "$policies/notificationController";
   import { LocalNotifications } from "@capacitor/local-notifications";
   import { Preferences } from "@capacitor/preferences";
+  import { store } from "$stores/store";
 
   // Lógica para acompanhar a rota atual (pode variar dependendo do Svelte Router ou outras configurações)
   let currentRoute = "#/";
@@ -29,9 +30,24 @@
     window.removeEventListener("hashchange", handleRouteChange);
   });
 
+  // Lógica para resetar as metas diárias
+  async function resetActualGoals() {
+    const today = new Date().toISOString().slice(0, 10);
+    const todayItems = $store.items.filter((item) => item.date === today);
+
+    if (today === $store.today && todayItems.length > 0) return; // Se já foi resetado hoje, não faz nada
+
+    // Se não foi resetado hoje, reseta
+    store.setToday(today);
+    store.setDrinkedWater(0);
+    store.setExercised(0);
+    await Preferences.set({ key: "data", value: JSON.stringify($store) });
+  }
+
   onMount(async () => {
     await LocalNotifications.requestPermissions();
     await registerActions();
+    await resetActualGoals();
     if (!notificationsCalled) {
       await callWaterNotification();
       await callExerciseNotification();

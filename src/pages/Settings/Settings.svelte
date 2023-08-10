@@ -1,12 +1,23 @@
 <script>
   import { store } from "$stores/store";
   import { Preferences } from "@capacitor/preferences";
+  import { LocalNotifications } from "@capacitor/local-notifications";
+  import {
+    callExerciseNotification,
+    callWaterNotification,
+  } from "$policies/notificationController";
 
   let editable = false;
 
+  //Salva os dados no storage e chama as notificações com os dados atualizados
   async function toggleEditable() {
     if (editable == true) {
       await Preferences.set({ key: "data", value: JSON.stringify($store) });
+      await LocalNotifications.cancel({
+        notifications: [{ id: 1 }, { id: 2 }],
+      });
+      await callExerciseNotification();
+      await callWaterNotification();
       editable = false;
     } else {
       editable = true;
