@@ -6,7 +6,7 @@ Um app de monitoramento de consumo de água e pausas para alongamento e caminhad
 
 ## Demonstração
 
-Instale o [Apk](https://drive.google.com/file/d/15-Uq3YEmwrYSz9vwKtGmkJ3vVNWUN7RA/view?usp=drive_link) para android e teste agora mesmo
+Instale o [Apk](https://drive.google.com/file/d/15TU7NKwtzdC_o-VUibuE8jAHZCRivfJD/view?usp=sharing) para android e teste agora mesmo
 
 
 
